@@ -13,6 +13,7 @@ This project implements a **hybrid quantum-classical VQE workflow** to compute m
 <details>
 <summary>Click to expand workflow diagram</summary>
 ### Content of `config.yaml`.
+
   
   ```
   # ------------------ Ansatz ------------------
