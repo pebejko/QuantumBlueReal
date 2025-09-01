@@ -9,20 +9,20 @@ Variational Quantum Eigensolver implementation, aimed to be implemented in **Qua
 This project implements a **hybrid quantum-classical VQE workflow** to compute molecular ground state energies. 
 
 ### Table of contents
-- Introduction
-- Envioronment and clone repository
-- How to use
-- Configuration example
-- Molecule & Hamiltonian Builder
-- Ansatz
+  - Introduction
+  - Envioronment and clone repository
+  - How to use
+  - Configuration example
+  - Molecule & Hamiltonian Builder
+  - Ansatz
 
 ---
 ## Envioronment and clone repository
-**1.) Packages to install**
-  - Qibo
-  - (...)
+  **1. Packages to install**
+    - Qibo
+    - (...)
     
-**2.) Clone repository**
+  **2. Clone repository**
 
     git clone https://github.com/pebejko/QuantumBlueReal
     
@@ -30,14 +30,14 @@ This project implements a **hybrid quantum-classical VQE workflow** to compute m
 
 ---
 ## How to use
-**1.) Prepare the config.yaml**
+  **1. Prepare the config.yaml**
 
-**2.) Run the VQE**
+  **2. Run the VQE**
 
     python main.py
 ---
 ## Configuration example
-Example of `config.yaml` file:
+  Example of `config.yaml` file:
 
 ```
 # ------------------ Ansatz ------------------
@@ -99,5 +99,14 @@ This step is responsible for translating a real molecular system into a form sui
 - Uses `build_pauli_hamiltonian_qibo(mol_data, config)` to produce both a Qibo/OpenFermion Hamiltonian (`hamiltonian_op`) and a list of Pauli terms (`hamiltonian_list`) ready for measurement.
   
 ---
+
+## Ansatz 
+The ansatz is the parameterized quantum circuit used in VQE. Its role is to generate a trial wavefunction for the molecule whose energy we want to minimize.
+- We use **Hardware-Efficient Ansatz (HEA)** designed to match the available qubit connectivity and minimize circuit depth.
+- **Layers** (`n_layers`): Each layer applies a set of rotation gates on each qubit followed by entangling gates according to the specified connectivity.
+- **Parameterized gates:** The angles of the rotation gates are the trainable parameters that the classical optimizer (Adam) updates.
+- **Expressibility:** More layers increase flexibility to approximate the true ground state, but also increase circuit depth and cost.
+  ![HEA1 Ansatz Circuit](images/ansatz.png)
+
 
 
