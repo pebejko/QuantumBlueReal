@@ -106,7 +106,8 @@ The ansatz is the parameterized quantum circuit used in VQE. Its role is to gene
 - **Layers** (`n_layers`): Each layer applies a set of rotation gates on each qubit followed by entangling gates according to the specified connectivity.
 - **Parameterized gates:** The angles of the rotation gates are the trainable parameters that the classical optimizer (Adam) updates.
 - **Expressibility:** More layers increase flexibility to approximate the true ground state, but also increase circuit depth and cost.
-  ![HEA1 Ansatz Circuit](images/ansatz.png)
+  
+  ![HEA1 Ansatz Circuit](image.png)
 
 
 
