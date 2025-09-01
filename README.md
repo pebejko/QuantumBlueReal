@@ -12,7 +12,7 @@ This project implements a **hybrid quantum-classical VQE workflow** to compute m
 
 <details>
 <summary>Click to expand workflow diagram</summary>
-### `config.yaml`
+### Content of `config.yaml`.
   
   ```
   # ------------------ Ansatz ------------------
@@ -61,6 +61,7 @@ active_electrons: 3
 active_orbitals: 3
 
 # Symmetry options
-use_symmetry: "true"```
+use_symmetry: "true"
+```
 
 </details>
