@@ -6,7 +6,7 @@ Variational Quantum Eigensolver implementation, aimed to be implemented in **Qua
 
 ## 📖 Overview
 
-This project implements a **hybrid quantum-classical VQE workflow** to compute molecular ground state energies.  
+This project implements a **hybrid quantum-classical VQE workflow** to compute molecular ground state energies.  `config.yaml`
 
 **Workflow Summary:**
 
