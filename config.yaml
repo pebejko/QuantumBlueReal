@@ -6,8 +6,7 @@ ansatz:
 
 # ------------------ Backend ------------------
 backend:
-  simulator: qibojit  
-  runcard: "QBLUE"  # cambiar 
+  backend: "qibojit" # or "qblue" (to run in real quantum computer)  
   shots: 100
 
 # ------------------ Optimización ------------------

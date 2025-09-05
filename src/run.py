@@ -5,7 +5,7 @@ import os
 import pickle
 import yaml
 import numpy as np
-#import qililab as ql
+import qililab as ql
 from openfermion.utils import count_qubits
 from src.hamiltonian import build_pauli_hamiltonian_qibo
 from src.utils import rotate_to_zmod
@@ -72,11 +72,22 @@ class VQERunner:
 
         # Backend setup: simulator (default qibojit) or real quantum hardware
         backend_cfg = self.config.get("backend", {})
-        sim_backend = backend_cfg.get("simulator", "qibojit")
-        self.backend_path = sim_backend if isinstance(sim_backend, str) else sim_backend.get("name", "qibojit")
-        self.runcard = backend_cfg.get("runcard", None)
-        if self.backend_path != "qibojit" and self.runcard is None:
-            raise ValueError("Para backend de hardware, debes especificar 'runcard' en el config.")
+        backend_name = backend_cfg.get("backend", "qibojit").lower()  
+        
+        if backend_name == "qibojit":
+            self.backend_path = "qibojit"
+            self.runcard = None
+        elif backend_name == "qblue":
+            import qibo as ql
+            import os
+            self.backend_path = "qblue"
+            self.runcard = "QBLUE"
+            ql.logger.setLevel(40)
+            os.environ["RUNCARD"] = self.runcard
+            PLATFORM_PATH = os.getenv("RUNCARD")
+            print(f"[Hardware] Usando runcard: {PLATFORM_PATH}")
+        else:
+            raise ValueError(f"Backend '{backend_name}' no soportado")
 
         # Total number of shots
         self.nshots = backend_cfg.get("shots", 500)
@@ -161,8 +172,7 @@ class VQERunner:
             if self.backend_path== "qibojit": # Executes circuit in backend. Simulator (qibojit) or real quantum computer (runcard)
                 result = circ_copy(nshots=shots)
             else:
-                #result = ql.execute(circ_copy, self.runcard, nshots = shots)
-                result = circ_copy(nshots=shots)
+                result = ql.execute(circ_copy, self.runcard, nshots = shots)
             freq = Counter(result.frequencies()) # How many times each bitstring appeared (freq)
             term_energy = coef * self._expectation_from_samples(freq, term) # Calculat the energy of this term, using _expectation_from_samples().
             total_energy += term_energy # Adds the energy of every term caculated before to get the total energy.
