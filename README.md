@@ -19,8 +19,24 @@ This project implements a **hybrid quantum-classical VQE workflow** to compute m
 ---
 ## Envioronment and clone repository
   **1. Packages to install**
-    - Qibo
-    - (...)
+    All packages in env.yml:
+      ```    
+      name: qblue1
+        channels:
+          - conda-forge
+          - defaults
+        dependencies:
+          - python=3.10
+          - numpy=1.24
+          - pytorch
+          - openfermion
+          - pip
+          - pip:
+            - qibo
+            - qililab
+            - openfermionpyscf
+            - pyscf
+      ```
     
   **2. Clone repository**
 
@@ -107,4 +123,4 @@ The ansatz is the parameterized quantum circuit used in VQE. Its role is to gene
 - **Parameterized gates:** The angles of the rotation gates are the trainable parameters that the classical optimizer (Adam) updates.
 - **Expressibility:** More layers increase flexibility to approximate the true ground state, but also increase circuit depth and cost.
   
-  ![HEA1 Ansatz Circuit](image.png)
+  ![HEA1 Ansatz Circuit](images/image.png)

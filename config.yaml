@@ -1,13 +1,13 @@
 # ------------------ Ansatz ------------------
 ansatz:
-  type: HEA1          # Nombre de la clase de ansatz
-  layers: 2           # Número de capas
-  connectivity: [[0,1]]     # Opcional: lista de tuplas de qubits a entrelazar
+  type: HEA1          
+  layers: 2           
+  connectivity: [[0,1]]     
 
 # ------------------ Backend ------------------
 backend:
-  simulator: qibojit   # "qibojit" para simulación, o "hardware" para QPU
-  runcard: "/path/to/runcard"  # Solo si quieres ejecutar en QPU real
+  simulator: qibojit  
+  runcard: "QBLUE"  # cambiar 
   shots: 100
 
 # ------------------ Optimización ------------------
@@ -34,14 +34,12 @@ seed: 42
 # Molecular system (H2 simple)
 geometry:
   - ["N", [0.0, 0.0, 0.0]]
-  - ["H", [0.0, 0.0, 0.74]]   # Common distance H2
+  - ["H", [0.0, 0.0, 0.74]]   
 basis: "sto-3g"
 multiplicity: 1
 charge: 0
 
-# Active space or frozen orbitals (opcional)
 active_electrons: 3
 active_orbitals: 3
 
-# Symmetry options
 use_symmetry: "true"

@@ -5,6 +5,7 @@ import os
 import pickle
 import yaml
 import numpy as np
+#import qililab as ql
 from openfermion.utils import count_qubits
 from src.hamiltonian import build_pauli_hamiltonian_qibo
 from src.utils import rotate_to_zmod
